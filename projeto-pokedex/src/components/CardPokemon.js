@@ -12,7 +12,6 @@ const CardPokemon = (props) => {
     axios
       .get(`${baseUrl}pokemon/${props.pokemon.name}`)
       .then((res) => {
-        console.log(res.data);
         setInfoPokes(res.data);
       })
       .catch((err) => {
@@ -20,9 +19,14 @@ const CardPokemon = (props) => {
       });
   };
 
-  const setPokedex = () =>{
+  const setPokedex = () => {
     const newPokedex = [...props.pokedexList, infosPoke]
     props.setPokedexList(newPokedex);
+
+    const newPokeList = props.pokeList.filter((item) => {
+      return item.name != infosPoke.name
+    })
+    props.setPokeLIst(newPokeList)
   }
 
   useEffect(() => {
@@ -39,6 +43,7 @@ const CardPokemon = (props) => {
       </div>
       <div>
         <button onClick={() => setPokedex()}>Adicionar a Pokedex</button>
+        {/* <button onClick={() => deletePokemon()}>remover a Pokedex</button> */}
         <button onClick={() => goToDatils(navigate, infosPoke.id)}>Ver Detalhes</button>
       </div>
     </div>
