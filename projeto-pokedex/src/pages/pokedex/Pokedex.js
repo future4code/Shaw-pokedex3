@@ -5,13 +5,14 @@ import { goToDatils, goBack } from "../../routers/Cordinator";
 
 const Pokedex = (props) => {
     const navigate = useNavigate()
-    console.log(props.pokedexList)
 
     const deletePokemon = (pokemoName) => {
         const newPokedexList = props.pokedexList.filter((item) => {
-            return item.name != pokemoName
+            return item.name != pokemoName.name
         })
         props.setPokedexList(newPokedexList)
+        const newPokeList = [...props.pokeList, pokemoName]
+        props.setPokeLIst(newPokeList)        
     }
 
 
@@ -26,7 +27,7 @@ const Pokedex = (props) => {
                     />
                 </div>
                 <div>
-                    <button onClick={() => deletePokemon(pokemon.name)}>remover a Pokedex</button>
+                    <button onClick={() => deletePokemon(pokemon)}>remover a Pokedex</button>
                     <button onClick={() => goToDatils(navigate, pokemon.id)}>Ver Detalhes</button>
                 </div>
             </div>
