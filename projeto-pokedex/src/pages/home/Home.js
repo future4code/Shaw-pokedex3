@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { goToPokedex } from "../../routers/Cordinator";
 import axios from "axios";
 import { baseUrl } from "../../constants/constants";
 import CardPokemon from "../../components/CardPokemon";
+// import GlobalState from "../../global/GlobalState";
 
 
 const Home = (props) => {
     const navigate = useNavigate()
+    // const {states, setters} = useContext(GlobalState)
+    // const pokeList = states.pokeList
+    // const setPokeList = setters.setPokeLIst
 
     const getPokemons = () => {
         axios.get(`${baseUrl}pokemon`)
@@ -19,8 +23,6 @@ const Home = (props) => {
             })
     }
 
-
-    // console.log(props.pokedexList)
     const cardPokemons = props.pokeList.map((pokemon) => {
         return (
             <CardPokemon key={pokemon.name}
@@ -34,8 +36,10 @@ const Home = (props) => {
 
 
     useEffect(() => {
-        getPokemons();
-    }, [])
+        if(!props.pokedexList.length){
+            getPokemons();
+        }
+    }, [props.pokedexList])
 
     return (
         <div>
