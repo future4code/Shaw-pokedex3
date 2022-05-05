@@ -1,21 +1,29 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { goToDatils, goBack } from "../../routers/Cordinator";
+import { GlobalContext } from "../../global/GlobalContext";
 
 
 const Pokedex = (props) => {
     const navigate = useNavigate()
-    console.log(props.pokedexList)
+    const test = useContext(GlobalContext)
+
+    const pokedexList = test.states.pokedexList
+    const pokeList = test.states.pokeList
+    const setPokedexList = test.setters.setPokedexList
+    const setPokeList = test.setters.setPokeList
 
     const deletePokemon = (pokemoName) => {
-        const newPokedexList = props.pokedexList.filter((item) => {
-            return item.name != pokemoName
+        const newPokedexList = pokedexList.filter((item) => {
+            return item.name != pokemoName.name
         })
-        props.setPokedexList(newPokedexList)
+        setPokedexList(newPokedexList)
+        const newPokeList = [...pokeList, pokemoName]
+        setPokeList(newPokeList)
     }
 
 
-    const pokemons = props.pokedexList.map((pokemon) => {
+    const pokemons = pokedexList.map((pokemon) => {
 
         return (
             <div>
@@ -26,7 +34,7 @@ const Pokedex = (props) => {
                     />
                 </div>
                 <div>
-                    <button onClick={() => deletePokemon(pokemon.name)}>remover a Pokedex</button>
+                    <button onClick={() => deletePokemon(pokemon)}>remover a Pokedex</button>
                     <button onClick={() => goToDatils(navigate, pokemon.id)}>Ver Detalhes</button>
                 </div>
             </div>

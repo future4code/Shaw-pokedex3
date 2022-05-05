@@ -1,27 +1,33 @@
-import React, {useState, useEffect} from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { goToHome } from "../../routers/Cordinator";
 import { useNavigate, useParams } from "react-router-dom";
+//--- implementando global 
+import { GlobalContext } from "../../global/GlobalContext";
 import axios from "axios";
 import { baseUrl } from "../../constants/constants";
 
-const Details = () =>{
-    const navigate = useNavigate()
+
+const Details = () => {
     const params = useParams()
-    const [details, setDetails] = useState({})
+    const test = useContext(GlobalContext)
 
-    useEffect(() =>{
-        getPokeDetails()
-    },[])
+    const navigate = useNavigate()
+    const details = test.states.details
+    const setDetails = test.setters.setDetails
 
-    const getPokeDetails = () =>{
+    const getPokeDetails = () => {
         axios.get(`${baseUrl}pokemon/${params.id}`)
-        .then((res) =>{
-            setDetails(res.data)
-        })
-        .catch((err) =>{
-            console.log(err.response)
-        })
+            .then((res) => {
+                setDetails(res.data)
+            })
+            .catch((err) => {
+                console.log(err.response)
+            })
     }
+
+    useEffect(() => {
+        getPokeDetails()
+    }, [])
 
     return (
         <div>
