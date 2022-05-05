@@ -1,7 +1,7 @@
 import axios from "axios";
 import { baseUrl } from "../constants/constants";
 import { useEffect, useState } from "react";
-import { goToDatils } from "../routers/Cordinator";
+import { goToDetails } from "../routers/Cordinator";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../global/GlobalContext";
 import React, { useContext } from "react";
@@ -36,7 +36,11 @@ const CardPokemon = (props) => {
     const newPokeList = pokeList.filter((item) => {
       return item.name != infosPoke.name
     })
+<<<<<<< HEAD
+    props.setPokeList(newPokeList)
+=======
     setPokeList(newPokeList)
+>>>>>>> ce9d68fece3bf0877e90e0a7c1cf8fca9d79676f
   }
 
   useEffect(() => {
@@ -53,8 +57,7 @@ const CardPokemon = (props) => {
       </div>
       <div>
         <button onClick={() => setPokedex()}>Adicionar a Pokedex</button>
-        {/* <button onClick={() => deletePokemon()}>remover a Pokedex</button> */}
-        <button onClick={() => goToDatils(navigate, infosPoke.id)}>Ver Detalhes</button>
+        <button onClick={() => goToDetails(navigate, infosPoke.id)}>Ver Detalhes</button>
       </div>
     </div>
   );
