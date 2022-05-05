@@ -6,6 +6,7 @@ import { GlobalContext } from "../../global/GlobalContext";
 
 const Pokedex = (props) => {
     const navigate = useNavigate()
+parte-sergio
     const test = useContext(GlobalContext)
 
     const pokedexList = test.states.pokedexList
@@ -20,6 +21,7 @@ const Pokedex = (props) => {
         setPokedexList(newPokedexList)
         const newPokeList = [...pokeList, pokemoName]
         setPokeList(newPokeList)
+
     }
 
 
