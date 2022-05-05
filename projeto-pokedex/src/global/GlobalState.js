@@ -5,7 +5,7 @@ import { baseUrl } from "../constants/constants";
 
 export default function  GlobalState  (props){
     const [pokedexList, setPokedexList] = useState([])
-    const [pokeList, setPokeLIst] = useState([])
+    const [pokeList, setPokeList] = useState([])
     const [infosPoke, setInfoPokes] = useState({});
     const [details, setDetails] = useState({})
 
@@ -23,7 +23,7 @@ export default function  GlobalState  (props){
       const getPokemons = () => {
         axios.get(`${baseUrl}pokemon`)
             .then((res) => {
-                props.setPokeLIst(res.data.results)
+                props.setPokeList(res.data.results)
             })
             .catch((err) => {
                 console.log(err.response)
@@ -42,11 +42,13 @@ export default function  GlobalState  (props){
 
 
     const states = { pokeList, pokedexList, infosPoke, details }
-    const setters = {setPokeLIst, setPokedexList, setDetails, setInfoPokes}
+    const setters = {setPokeList, setPokedexList, setDetails, setInfoPokes}
     const requests = {getPokeInfos, getPokemons, getPokeDetails}
 
+    const data = {states, setters, requests}
+
     return(
-        <GlobalContext.Provider value={{states, setters, requests}}>
+        <GlobalContext.Provider value={{data}}>
 
         </GlobalContext.Provider>
     )

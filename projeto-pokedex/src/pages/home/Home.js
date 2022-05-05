@@ -13,21 +13,26 @@ const Home = (props) => {
     // const pokeList = states.pokeList
     // const setPokeList = setters.setPokeLIst
 
+
+
+console.log(props)
     const getPokemons = () => {
         axios.get(`${baseUrl}pokemon`)
             .then((res) => {
-                props.setPokeLIst(res.data.results)
+                props.setPokeList(res.data.results)
+                
             })
             .catch((err) => {
                 console.log(err.response)
             })
     }
 
+
     const cardPokemons = props.pokeList.map((pokemon) => {
         return (
             <CardPokemon key={pokemon.name}
                 pokeList={props.pokeList}
-                setPokeLIst={props.setPokeLIst}
+                setPokeList={props.setPokeList}
                 pokemon={pokemon}
                 setPokedexList={props.setPokedexList}
                 pokedexList={props.pokedexList} />

@@ -26,7 +26,7 @@ const CardPokemon = (props) => {
     const newPokeList = props.pokeList.filter((item) => {
       return item.name != infosPoke.name
     })
-    props.setPokeLIst(newPokeList)
+    props.setPokeList(newPokeList)
   }
 
   useEffect(() => {
