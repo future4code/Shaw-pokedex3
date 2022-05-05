@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { goToDatils, goBack } from "../../routers/Cordinator";
-
+import { goToDetails, goBack } from "../../routers/Cordinator";
 
 const Pokedex = (props) => {
     const navigate = useNavigate()
@@ -12,9 +11,8 @@ const Pokedex = (props) => {
         })
         props.setPokedexList(newPokedexList)
         const newPokeList = [...props.pokeList, pokemoName]
-        props.setPokeLIst(newPokeList)        
+        props.setPokeList(newPokeList)        
     }
-
 
     const pokemons = props.pokedexList.map((pokemon) => {
 
@@ -28,7 +26,7 @@ const Pokedex = (props) => {
                 </div>
                 <div>
                     <button onClick={() => deletePokemon(pokemon)}>remover a Pokedex</button>
-                    <button onClick={() => goToDatils(navigate, pokemon.id)}>Ver Detalhes</button>
+                    <button onClick={() => goToDetails(navigate, pokemon.id)}>Ver Detalhes</button>
                 </div>
             </div>
         )

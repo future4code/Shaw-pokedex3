@@ -7,13 +7,13 @@ import React, { useState } from "react";
 const Router = () => {
 
   const [pokedexList, setPokedexList] = useState([])
-  const [pokeList, setPokeLIst] = useState([])
+  const [pokeList, setPokeList] = useState([])
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={"/"} element={<Home pokeList={pokeList} setPokeLIst={setPokeLIst} pokedexList={pokedexList} setPokedexList={setPokedexList} />} />
-        <Route path="/pokedex" element={<Pokedex pokeList={pokeList} setPokeLIst={setPokeLIst} pokedexList={pokedexList} setPokedexList={setPokedexList} />} />
+        <Route path={"/"} element={<Home pokeList={pokeList} setPokeList={setPokeList} pokedexList={pokedexList} setPokedexList={setPokedexList} />} />
+        <Route path="/pokedex" element={<Pokedex pokeList={pokeList} setPokeList={setPokeList} pokedexList={pokedexList} setPokedexList={setPokedexList} />} />
         <Route path="/pokemon/:id" element={<Details />} />
       </Routes>
     </BrowserRouter>

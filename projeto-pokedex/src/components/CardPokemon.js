@@ -1,7 +1,7 @@
 import axios from "axios";
 import { baseUrl } from "../constants/constants";
 import { useEffect, useState } from "react";
-import { goToDatils } from "../routers/Cordinator";
+import { goToDetails } from "../routers/Cordinator";
 import { useNavigate } from "react-router-dom";
 
 const CardPokemon = (props) => {
@@ -26,7 +26,7 @@ const CardPokemon = (props) => {
     const newPokeList = props.pokeList.filter((item) => {
       return item.name != infosPoke.name
     })
-    props.setPokeLIst(newPokeList)
+    props.setPokeList(newPokeList)
   }
 
   useEffect(() => {
@@ -43,8 +43,7 @@ const CardPokemon = (props) => {
       </div>
       <div>
         <button onClick={() => setPokedex()}>Adicionar a Pokedex</button>
-        {/* <button onClick={() => deletePokemon()}>remover a Pokedex</button> */}
-        <button onClick={() => goToDatils(navigate, infosPoke.id)}>Ver Detalhes</button>
+        <button onClick={() => goToDetails(navigate, infosPoke.id)}>Ver Detalhes</button>
       </div>
     </div>
   );
