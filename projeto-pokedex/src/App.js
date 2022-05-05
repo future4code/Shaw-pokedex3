@@ -18,7 +18,6 @@ function App () {
       <GlobalStyle/>
       <Router/>
     </div>
-
   )
 }
 

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { goToPokedex } from "../../routers/Cordinator";
+import CardPokemon from "../../components/CardPokemon";
+import { GlobalContext } from "../../global/GlobalContext";
 import axios from "axios";
 import { baseUrl } from "../../constants/constants";
 import CardPokemon from "../../components/CardPokemon";
@@ -9,6 +11,9 @@ import logo from "../../assets/logoPokemon.png"
 
 
 const Home = (props) => {
+    const navigate = useNavigate()
+
+const Home = () => {
     const navigate = useNavigate()
 
     const getPokemons = () => {
@@ -20,15 +25,15 @@ const Home = (props) => {
                 console.log(err.response)
             })
     }
+    
+    const cardPokemons = pokeList.map((pokemon) => {
 
-    const cardPokemons = props.pokeList.map((pokemon) => {
         return (
-            <CardPokemon key={pokemon.name}
-                pokeList={props.pokeList}
-                setPokeLIst={props.setPokeList}
+            <CardPokemon
+                key={pokemon.name}
+                setPokeLIst={props.setPokeLIst}
                 pokemon={pokemon}
-                setPokedexList={props.setPokedexList}
-                pokedexList={props.pokedexList} />
+            />
         )
     })
 
@@ -37,7 +42,7 @@ const Home = (props) => {
         if(!props.pokedexList.length){
             getPokemons();
         }
-    }, [])
+    }, [pokedexList])
 
     return (
         <Container>

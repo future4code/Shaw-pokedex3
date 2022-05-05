@@ -1,15 +1,37 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { goToDetails, goBack } from "../../routers/Cordinator";
+=======
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { goToDatils, goBack } from "../../routers/Cordinator";
+import { GlobalContext } from "../../global/GlobalContext";
+
+>>>>>>> ce9d68fece3bf0877e90e0a7c1cf8fca9d79676f
+=======
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { goToDatils, goBack } from "../../routers/Cordinator";
 
+>>>>>>> parent of 078367d (backup com todas funcionalidades)
 
 const Pokedex = (props) => {
     const navigate = useNavigate()
+parte-sergio
+    const test = useContext(GlobalContext)
+
+    const pokedexList = test.states.pokedexList
+    const pokeList = test.states.pokeList
+    const setPokedexList = test.setters.setPokedexList
+    const setPokeList = test.setters.setPokeList
 
     const deletePokemon = (pokemoName) => {
-        const newPokedexList = props.pokedexList.filter((item) => {
+        const newPokedexList = pokedexList.filter((item) => {
             return item.name != pokemoName.name
         })
+<<<<<<< HEAD
         props.setPokedexList(newPokedexList)
         const newPokeList = [...props.pokeList, pokemoName]
         props.setPokeLIst(newPokeList)        
@@ -17,6 +39,16 @@ const Pokedex = (props) => {
 
 
     const pokemons = props.pokedexList.map((pokemon) => {
+=======
+        setPokedexList(newPokedexList)
+        const newPokeList = [...pokeList, pokemoName]
+        setPokeList(newPokeList)
+
+    }
+
+
+    const pokemons = pokedexList.map((pokemon) => {
+>>>>>>> ce9d68fece3bf0877e90e0a7c1cf8fca9d79676f
 
         return (
             <div>

@@ -3,10 +3,20 @@ import { baseUrl } from "../constants/constants";
 import { useEffect, useState } from "react";
 import { goToDatils } from "../routers/Cordinator";
 import { useNavigate } from "react-router-dom";
+import { GlobalContext } from "../global/GlobalContext";
+import React, { useContext } from "react";
+
 
 const CardPokemon = (props) => {
-  const [infosPoke, setInfoPokes] = useState({});
   const navigate = useNavigate()
+  const test = useContext(GlobalContext)
+
+  const infosPoke = test.states.infosPoke
+  const pokeList = test.states.pokeList
+  const pokedexList = test.states.pokedexList
+  const setInfoPokes = test.setters.setInfoPokes
+  const setPokeList = test.setters.setPokeList
+  const setPokedexList = test.setters.setPokedexList
 
   const getPokeInfos = () => {
     axios
@@ -20,13 +30,21 @@ const CardPokemon = (props) => {
   };
 
   const setPokedex = () => {
-    const newPokedex = [...props.pokedexList, infosPoke]
-    props.setPokedexList(newPokedex);
+    const newPokedex = [...pokedexList, infosPoke]
+    setPokedexList(newPokedex);
 
-    const newPokeList = props.pokeList.filter((item) => {
+    const newPokeList = pokeList.filter((item) => {
       return item.name != infosPoke.name
     })
+<<<<<<< HEAD
+<<<<<<< HEAD
+    props.setPokeList(newPokeList)
+=======
+    setPokeList(newPokeList)
+>>>>>>> ce9d68fece3bf0877e90e0a7c1cf8fca9d79676f
+=======
     props.setPokeLIst(newPokeList)
+>>>>>>> parent of 078367d (backup com todas funcionalidades)
   }
 
   useEffect(() => {
