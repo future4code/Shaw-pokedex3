@@ -2,7 +2,7 @@ export const goToHome = (navigate) =>{
     navigate("/")
 }
 
-export const goToDetails = (navigate, id) =>{
+export const goToDatils = (navigate, id) =>{
     navigate(`/pokemon/${id}`)
 }
 

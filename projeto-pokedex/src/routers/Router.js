@@ -8,11 +8,12 @@ const Router = () => {
 
 <<<<<<< HEAD
   const [pokedexList, setPokedexList] = useState([])
-  const [pokeList, setPokeList] = useState([])
+  const [pokeList, setPokeLIst] = useState([])
 
   return (
     <BrowserRouter>
       <Routes>
+<<<<<<< HEAD
         <Route path={"/"} element={<Home pokeList={pokeList} setPokeList={setPokeList} pokedexList={pokedexList} setPokedexList={setPokedexList} />} />
         <Route path="/pokedex" element={<Pokedex pokeList={pokeList} setPokeList={setPokeList} pokedexList={pokedexList} setPokedexList={setPokedexList} />} />
 =======
@@ -22,6 +23,10 @@ const Router = () => {
         <Route path={"/"} element={<Home />} />
         <Route path="/pokedex" element={<Pokedex />} />
 >>>>>>> ce9d68fece3bf0877e90e0a7c1cf8fca9d79676f
+=======
+        <Route path={"/"} element={<Home pokeList={pokeList} setPokeLIst={setPokeLIst} pokedexList={pokedexList} setPokedexList={setPokedexList} />} />
+        <Route path="/pokedex" element={<Pokedex pokeList={pokeList} setPokeLIst={setPokeLIst} pokedexList={pokedexList} setPokedexList={setPokedexList} />} />
+>>>>>>> parent of 078367d (backup com todas funcionalidades)
         <Route path="/pokemon/:id" element={<Details />} />
       </Routes>
     </BrowserRouter>

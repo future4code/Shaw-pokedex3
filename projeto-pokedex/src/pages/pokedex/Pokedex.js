@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { goToDetails, goBack } from "../../routers/Cordinator";
@@ -9,6 +10,12 @@ import { goToDatils, goBack } from "../../routers/Cordinator";
 import { GlobalContext } from "../../global/GlobalContext";
 
 >>>>>>> ce9d68fece3bf0877e90e0a7c1cf8fca9d79676f
+=======
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { goToDatils, goBack } from "../../routers/Cordinator";
+
+>>>>>>> parent of 078367d (backup com todas funcionalidades)
 
 const Pokedex = (props) => {
     const navigate = useNavigate()
@@ -27,8 +34,9 @@ parte-sergio
 <<<<<<< HEAD
         props.setPokedexList(newPokedexList)
         const newPokeList = [...props.pokeList, pokemoName]
-        props.setPokeList(newPokeList)        
+        props.setPokeLIst(newPokeList)        
     }
+
 
     const pokemons = props.pokedexList.map((pokemon) => {
 =======
@@ -52,7 +60,7 @@ parte-sergio
                 </div>
                 <div>
                     <button onClick={() => deletePokemon(pokemon)}>remover a Pokedex</button>
-                    <button onClick={() => goToDetails(navigate, pokemon.id)}>Ver Detalhes</button>
+                    <button onClick={() => goToDatils(navigate, pokemon.id)}>Ver Detalhes</button>
                 </div>
             </div>
         )
