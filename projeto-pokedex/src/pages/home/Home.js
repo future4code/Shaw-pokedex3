@@ -1,45 +1,47 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { goToPokedex } from "../../routers/Cordinator";
+import CardPokemon from "../../components/CardPokemon";
+import { GlobalContext } from "../../global/GlobalContext";
 import axios from "axios";
 import { baseUrl } from "../../constants/constants";
-import CardPokemon from "../../components/CardPokemon";
-// import GlobalState from "../../global/GlobalState";
 
-
-const Home = (props) => {
+const Home = () => {
     const navigate = useNavigate()
-    // const {states, setters} = useContext(GlobalState)
-    // const pokeList = states.pokeList
-    // const setPokeList = setters.setPokeLIst
+    const test = useContext(GlobalContext)
+
+    const pokeList = test.states.pokeList
+    const setPokeList = test.setters.setPokeList
+    const pokedexList = test.states.pokedexList
+
 
     const getPokemons = () => {
         axios.get(`${baseUrl}pokemon`)
             .then((res) => {
-                props.setPokeLIst(res.data.results)
+                setPokeList(res.data.results)
             })
             .catch((err) => {
                 console.log(err.response)
             })
     }
+    
+    const cardPokemons = pokeList.map((pokemon) => {
 
-    const cardPokemons = props.pokeList.map((pokemon) => {
         return (
-            <CardPokemon key={pokemon.name}
-                pokeList={props.pokeList}
-                setPokeLIst={props.setPokeLIst}
+            <CardPokemon
+                key={pokemon.name}
                 pokemon={pokemon}
-                setPokedexList={props.setPokedexList}
-                pokedexList={props.pokedexList} />
+            />
         )
     })
 
-
     useEffect(() => {
-        if(!props.pokedexList.length){
+parte-sergio
+        if (!pokedexList.length) {
             getPokemons();
         }
-    }, [props.pokedexList])
+    }, [pokedexList])
+
 
     return (
         <div>
