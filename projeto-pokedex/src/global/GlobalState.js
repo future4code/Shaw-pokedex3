@@ -55,9 +55,21 @@ import { baseUrl } from "../constants/constants";
 
 export default function  GlobalState  (props){
     const [pokedexList, setPokedexList] = useState([])
-    const [pokeList, setPokeLIst] = useState([])
+    const [pokeList, setPokeList] = useState([])
     const [infosPoke, setInfoPokes] = useState({});
     const [details, setDetails] = useState({})
+
+
+    const getPokemons = () => {
+        axios.get(`${baseUrl}pokemon`)
+            .then((res) => {
+                setPokeList(res.data.results)
+            })
+            .catch((err) => {
+                console.log(err.response)
+            })
+    }
+
 
     const getPokeInfos = () => {
         axios
@@ -70,18 +82,8 @@ export default function  GlobalState  (props){
           });
       };
 
-      const getPokemons = () => {
-        axios.get(`${baseUrl}pokemon`)
-            .then((res) => {
-                props.setPokeLIst(res.data.results)
-            })
-            .catch((err) => {
-                console.log(err.response)
-            })
-    }
-
     const getPokeDetails = () =>{
-        axios.get(`${baseUrl}pokemon/${infosPoke.id}`)
+        axios.get(`${baseUrl}pokemon/${pokeList.id}`)
         .then((res) =>{
             setDetails(res.data)
         })
@@ -92,12 +94,14 @@ export default function  GlobalState  (props){
 
 
     const states = { pokeList, pokedexList, infosPoke, details }
-    const setters = {setPokeLIst, setPokedexList, setDetails, setInfoPokes}
+    const setters = {setPokeList, setPokedexList, setDetails, setInfoPokes}
     const requests = {getPokeInfos, getPokemons, getPokeDetails}
 
-    return(
-        <GlobalContext.Provider value={{states, setters, requests}}>
+    const data = {states, setters, requests}
 
+    return(
+        <GlobalContext.Provider value={{data}}>
+            {props.childrens}
         </GlobalContext.Provider>
     )
 master
